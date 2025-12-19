@@ -1,0 +1,66 @@
+.layout {
+  display: grid;
+  grid-template-columns: 1fr 120px 1fr; /* wider for LEGO */
+  min-height: 100vh;
+}
+/* MAIN SEPARATOR */
+.divider {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  padding: 24px 0;
+  background: linear-gradient(
+    to bottom,
+    #050505,
+    #0a0a0a
+  );
+}
+
+.divider img {
+  width: 72px;
+  height: auto;
+  filter: drop-shadow(0 6px 12px rgba(0,0,0,0.6));
+}
+
+
+/* LEGO STUDS EFFECT */
+.divider::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle at 50% 10px, rgba(255,255,255,0.35) 2px, transparent 3px),
+    radial-gradient(circle at 50% 30px, rgba(255,255,255,0.35) 2px, transparent 3px),
+    radial-gradient(circle at 50% 50px, rgba(255,255,255,0.35) 2px, transparent 3px);
+  background-size: 100% 40px;
+  opacity: 0.4;
+}
+
+.lego-divider {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: -12px; /* overlap blocks */
+  padding-top: 40px;
+
+  background: radial-gradient(circle, #0a0f1f, #05070d);
+  box-shadow: inset 0 0 30px rgba(0,0,0,0.8);
+}
+
+.lego-block {
+  width: 90px;
+  height: auto;
+
+  border-radius: 6px;
+  box-shadow:
+    0 8px 0 rgba(0,0,0,0.35),
+    0 12px 20px rgba(0,0,0,0.6);
+
+  transition: transform 0.2s ease;
+}
+
+.lego-block:hover {
+  transform: scale(1.05) rotate(0deg);
+}

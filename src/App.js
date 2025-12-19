@@ -1,23 +1,18 @@
-import logo from './logo.svg';
-import './App.css';
+import Navbar from "./components/Navbar/Navbar";
+import Professional from "./components/professional/Professional";
+import Gamified from "./components/gamified/Gamified";
+import Divider from "./components/Divider/Divider";
+
+import "./components/Divider/Divider.css";
+import "./App.css";
+import "./style/panel.css";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="layout">
+      <Professional />
+      <Divider />
+      <Gamified />
     </div>
   );
 }
