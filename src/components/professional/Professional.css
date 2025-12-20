@@ -8,61 +8,71 @@
   font-family: "JetBrains Mono", "Courier New", monospace;
 }
 
-/* TERMINAL CONTAINER */
-.terminal {
-  width: 100%;
-  max-width: 720px;
-  padding: 2.5rem;
-  background: rgba(0, 0, 0, 0.85);
-  border-radius: 14px;
-  box-shadow:
-    0 0 40px rgba(0, 255, 120, 0.15),
-    inset 0 0 30px rgba(0, 255, 120, 0.08);
-  color: #7CFF9E;
+/* ===== TERMINAL WRAPPER ===== */
+.professional {
+  min-height: 100vh;
+  background: #020617; /* deep terminal black */
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 4rem 2rem;
+
+  font-family: "Share Tech Mono", monospace;
+  color: #00ff88;
 }
 
-/* PROMPT LINE */
+/* terminal window */
+.terminal {
+  width: 100%;
+  max-width: 760px;
+  padding: 2.5rem 2rem;
+
+  background: rgba(2, 6, 23, 0.9);
+  border-radius: 16px;
+
+  box-shadow:
+    0 0 0 1px rgba(0,255,136,0.25),
+    0 0 40px rgba(0,255,136,0.15);
+}
+
+/* ===== TEXT ===== */
 .terminal-line {
-  color: #6BFF8D;
-  margin-bottom: 0.4rem;
+  margin-bottom: 0.35rem;
+  white-space: nowrap;
 }
 
 .prompt {
-  color: #22ff77;
-  margin-right: 0.5rem;
+  color: #22ff99;
+  margin-right: 6px;
 }
 
-/* OUTPUT */
 .terminal-output {
+  margin-left: 1.2rem;
   margin-bottom: 1.2rem;
-  padding-left: 1.2rem;
-  color: #A7FFC4;
+  color: #9affc6;
+  line-height: 1.6;
 }
 
-/* NAME SPECIAL STYLE */
+/* Name stands out */
 .name {
-  font-size: 2.2rem;
-  font-weight: 700;
-  color: #E6FFF1;
-  text-shadow:
-    0 0 8px rgba(0, 255, 120, 0.8),
-    0 0 18px rgba(0, 255, 120, 0.4);
+  font-size: 1.4rem;
+  color: #00ff88;
+  text-shadow: 0 0 10px rgba(0,255,136,0.6);
 }
 
-/* LINKS */
+/* Links */
 .terminal-output a {
-  color: #6BFF8D;
+  color: #00ff88;
   text-decoration: none;
 }
 
 .terminal-output a:hover {
-  text-decoration: underline;
+  text-shadow: 0 0 8px #00ff88;
 }
 
-/* BLINKING CURSOR */
+/* Cursor blink */
 .cursor {
-  margin-top: 0.5rem;
-  color: #22ff77;
+  margin-top: 1rem;
   animation: blink 1s steps(1) infinite;
 }
 

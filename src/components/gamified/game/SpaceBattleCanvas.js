@@ -89,20 +89,20 @@ export default function SpaceBattleCanvas() {
     const FIRE_RATE = 5; // shots per second
     const FIRE_DELAY = 1000 / FIRE_RATE; // ms between shots
     let lastShot = 0;
-const fire = (time) => {
-  if (!shoot.active) return;
+    const fire = (time) => {
+      if (!shoot.active) return;
 
-  if (time - lastShot >= FIRE_DELAY) {
-    resumes.push({
-      x: player.x,
-      y: player.y - player.size / 2,
-      speed: 3,
-      size: 70,
-    });
+      if (time - lastShot >= FIRE_DELAY) {
+        resumes.push({
+          x: player.x,
+          y: player.y - player.size / 2,
+          speed: 3,
+          size: 70,
+        });
 
-    lastShot = time;
-  }
-};
+        lastShot = time;
+      }
+    };
 
 
     // ===== LOOP =====
@@ -110,7 +110,7 @@ const fire = (time) => {
       fire(time);
 
       // Background
-      ctx.fillStyle = "#05070d";
+      ctx.fillStyle = "#ffff";
       ctx.fillRect(0, 0, viewWidth, viewHeight);
 
       // Debug border

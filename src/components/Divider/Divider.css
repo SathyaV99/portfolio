@@ -1,66 +1,134 @@
+/* LAYOUT GRID */
 .layout {
   display: grid;
-  grid-template-columns: 1fr 120px 1fr; /* wider for LEGO */
+  grid-template-columns: 1fr 140px 1fr;
   min-height: 100vh;
 }
-/* MAIN SEPARATOR */
+
+/* DIVIDER COLUMN */
 .divider {
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 14px;
-  padding: 24px 0;
-  background: linear-gradient(
-    to bottom,
-    #050505,
-    #0a0a0a
-  );
+  justify-content: center;
+
+  background: #ffffff;
+  border-left: 1px solid #eaeaea;
+  border-right: 1px solid #eaeaea;
+
+  overflow: hidden;
 }
 
-.divider img {
-  width: 72px;
-  height: auto;
-  filter: drop-shadow(0 6px 12px rgba(0,0,0,0.6));
-}
-
-
-/* LEGO STUDS EFFECT */
-.divider::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-image:
-    radial-gradient(circle at 50% 10px, rgba(255,255,255,0.35) 2px, transparent 3px),
-    radial-gradient(circle at 50% 30px, rgba(255,255,255,0.35) 2px, transparent 3px),
-    radial-gradient(circle at 50% 50px, rgba(255,255,255,0.35) 2px, transparent 3px);
-  background-size: 100% 40px;
-  opacity: 0.4;
-}
-
-.lego-divider {
+.lego-stack {
+  z-index: 2;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: -12px; /* overlap blocks */
-  padding-top: 40px;
+  gap: 14px;
 
-  background: radial-gradient(circle, #0a0f1f, #05070d);
-  box-shadow: inset 0 0 30px rgba(0,0,0,0.8);
+  transform: translateX(18px); /* move LEFT toward center */
 }
 
-.lego-block {
-  width: 90px;
-  height: auto;
 
+.lego-btn {
+  position: relative;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+}
+
+/* TRAIN BASE */
+.train {
+  position: absolute;
+  width: 120px; /* BIGGER train */
+  opacity: 0.95;
+  pointer-events: none;
+}
+
+/* RIGHT TRAIN → UP */
+.train-right {
+  bottom: -160px;
+  transform: rotate(-90deg); /* face upward */
+  animation: trainUp 10s linear infinite;
+}
+
+/* LEFT TRAIN → DOWN (ROTATED TWICE) */
+.train-left {
+  top: -160px;
+  transform: rotate(-90deg); /* opposite direction */
+  animation: trainDown 10s linear infinite;
+}
+
+/* ANIMATIONS */
+@keyframes trainUp {
+  from {
+    bottom: -160px;
+  }
+  to {
+    bottom: 110%;
+  }
+}
+
+@keyframes trainDown {
+  from {
+    top: -160px;
+  }
+  to {
+    top: 110%;
+  }
+}
+
+.lego-stack img {
+  width: 64px;
   border-radius: 6px;
   box-shadow:
-    0 8px 0 rgba(0,0,0,0.35),
-    0 12px 20px rgba(0,0,0,0.6);
-
-  transition: transform 0.2s ease;
+    0 6px 0 rgba(0, 0, 0, 0.5),
+    0 0 14px rgba(255, 255, 255, 0.25);
 }
 
-.lego-block:hover {
-  transform: scale(1.05) rotate(0deg);
+/* OPTIONAL STUD GLOW */
+.lego-stack img::after {
+  content: "";
+  display: block;
+}
+.lego-btn img {
+  width: 72px; /* slightly wider */
+  border-radius: 6px;
+
+  box-shadow:
+    0 6px 0 rgba(0, 0, 0, 0.45),
+    0 0 14px rgba(255, 255, 255, 0.25);
+
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.lego-btn:hover img {
+  transform: translateY(-4px);
+  box-shadow:
+    0 10px 0 rgba(0, 0, 0, 0.55),
+    0 0 20px rgba(255, 255, 255, 0.4);
+}
+.lego-btn span {
+  margin-left: 2px;
+
+  font-family: "Share Tech Mono", monospace;
+  font-size: 22px;
+  color: #000000;
+
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  transform: rotate(180deg);
+
+  opacity: 0.5;
+  transition: opacity 0.2s ease;
+
+  text-shadow: 0 0 6px #fffcf9;
+}
+
+.lego-btn:hover span {
+  opacity: 1;
 }
