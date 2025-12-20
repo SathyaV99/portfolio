@@ -1,78 +1,77 @@
 .professional {
   min-height: 100vh;
-  background: radial-gradient(circle at top, #020617, #000);
+  position: relative;
+  z-index: 1;
+  background-color: #000;
   display: flex;
   align-items: flex-start;
   justify-content: center;
   padding-top: 4rem;
   font-family: "JetBrains Mono", "Courier New", monospace;
 }
-
-/* ===== TERMINAL WRAPPER ===== */
-.professional {
-  min-height: 100vh;
-  background: #020617; /* deep terminal black */
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  padding: 4rem 2rem;
-
-  font-family: "Share Tech Mono", monospace;
-  color: #00ff88;
+.professional::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: #000;
+  z-index: -1;
 }
 
-/* terminal window */
 .terminal {
   width: 100%;
-  max-width: 760px;
-  padding: 2.5rem 2rem;
+  max-width: 720px;
+  padding: 2.5rem;
+  background-color: #000;
+  border-radius: 14px;
 
-  background: rgba(2, 6, 23, 0.9);
-  border-radius: 16px;
+  /* optional outer glow only */
+  box-shadow: 0 0 40px rgba(0, 255, 120, 0.15);
 
-  box-shadow:
-    0 0 0 1px rgba(0,255,136,0.25),
-    0 0 40px rgba(0,255,136,0.15);
+  color: #7CFF9E;
 }
 
-/* ===== TEXT ===== */
+/* PROMPT LINE */
 .terminal-line {
-  margin-bottom: 0.35rem;
-  white-space: nowrap;
+  color: #6BFF8D;
+  margin-bottom: 0.4rem;
 }
 
 .prompt {
-  color: #22ff99;
-  margin-right: 6px;
+  color: #22ff77;
+  margin-right: 0.5rem;
 }
 
+/* OUTPUT */
 .terminal-output {
-  margin-left: 1.2rem;
   margin-bottom: 1.2rem;
-  color: #9affc6;
-  line-height: 1.6;
+  padding-left: 1.2rem;
+  color: #A7FFC4;
 }
 
-/* Name stands out */
+/* NAME SPECIAL STYLE */
 .name {
-  font-size: 1.4rem;
-  color: #00ff88;
-  text-shadow: 0 0 10px rgba(0,255,136,0.6);
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #E6FFF1;
+  text-shadow:
+    0 0 8px rgba(0, 255, 119, 0.297),
+    0 0 18px rgba(0, 255, 120, 0.4);
 }
 
-/* Links */
+/* LINKS */
 .terminal-output a {
-  color: #00ff88;
+  color: #6bff8e21;
   text-decoration: none;
 }
 
 .terminal-output a:hover {
-  text-shadow: 0 0 8px #00ff88;
+  text-decoration: underline;
 }
 
-/* Cursor blink */
+/* BLINKING CURSOR */
 .cursor {
-  margin-top: 1rem;
+  margin-top: 0.5rem;
+  color: #22ff77;
   animation: blink 1s steps(1) infinite;
 }
 
