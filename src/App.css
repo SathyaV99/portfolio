@@ -30,6 +30,8 @@ body::after {
   background: radial-gradient(circle at center, transparent 40%, #05070d 85%);
   z-index: -1;
 }
+
+
 .split-layout {
   display: grid;
   grid-template-columns: 1fr 1fr;

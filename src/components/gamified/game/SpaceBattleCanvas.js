@@ -12,6 +12,7 @@ export default function SpaceBattleCanvas() {
   useEffect(() => {
     const canvas = canvasRef.current;
     const ctx = canvas.getContext("2d");
+    let paused = true;
 
     let viewWidth = 0;
     let viewHeight = 0;
@@ -76,6 +77,12 @@ export default function SpaceBattleCanvas() {
     };
 
     canvas.addEventListener("mousemove", move);
+
+    const onEnter = () => (paused = false);
+    const onLeave = () => (paused = true);
+    canvas.addEventListener("mouseenter", onEnter);
+    canvas.addEventListener("mouseleave", onLeave);
+
     window.addEventListener("mousedown", () => {
       resumes.push({
         x: player.x,
@@ -89,28 +96,43 @@ export default function SpaceBattleCanvas() {
     const FIRE_RATE = 5; // shots per second
     const FIRE_DELAY = 1000 / FIRE_RATE; // ms between shots
     let lastShot = 0;
-const fire = (time) => {
-  if (!shoot.active) return;
+    const fire = (time) => {
+      if (!shoot.active) return;
 
-  if (time - lastShot >= FIRE_DELAY) {
-    resumes.push({
-      x: player.x,
-      y: player.y - player.size / 2,
-      speed: 3,
-      size: 70,
-    });
+      if (time - lastShot >= FIRE_DELAY) {
+        resumes.push({
+          x: player.x,
+          y: player.y - player.size / 2,
+          speed: 3,
+          size: 70,
+        });
 
-    lastShot = time;
-  }
-};
+        lastShot = time;
+      }
+    };
 
 
     // ===== LOOP =====
     const loop = (time) => {
+      if (paused) {
+        // Draw dimmed overlay
+        ctx.fillStyle = "rgba(255,255,255,0.6)";
+        ctx.fillRect(0, 0, viewWidth, viewHeight);
+
+        ctx.fillStyle = "#666";
+        ctx.font = "20px monospace";
+        ctx.textAlign = "center";
+        ctx.fillText("Hover to Resume", viewWidth / 2, viewHeight / 2);
+
+        requestAnimationFrame(loop);
+        return;
+      }
+
       fire(time);
 
+
       // Background
-      ctx.fillStyle = "#05070d";
+      ctx.fillStyle = "#ffff";
       ctx.fillRect(0, 0, viewWidth, viewHeight);
 
       // Debug border
@@ -167,7 +189,10 @@ const fire = (time) => {
     return () => {
       window.removeEventListener("resize", resize);
       canvas.removeEventListener("mousemove", move);
+      canvas.removeEventListener("mouseenter", onEnter);
+      canvas.removeEventListener("mouseleave", onLeave);
     };
+
   }, []);
 
   return (

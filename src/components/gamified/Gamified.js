@@ -3,7 +3,7 @@ import SpaceBattleCanvas from "./game/SpaceBattleCanvas";
 
 export default function Gamified() {
   return (
-    <section className="gamified">
+    <section id="gamified" className="gamified">
       <div className="gamified-ui">
         <div className="panel">
           <h3>PLAYER STATUS</h3>

@@ -1,4 +1,3 @@
-import Navbar from "./components/Navbar/Navbar";
 import Professional from "./components/professional/Professional";
 import Gamified from "./components/gamified/Gamified";
 import Divider from "./components/Divider/Divider";
