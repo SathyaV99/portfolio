@@ -12,6 +12,7 @@ export default function SpaceBattleCanvas() {
   useEffect(() => {
     const canvas = canvasRef.current;
     const ctx = canvas.getContext("2d");
+    let paused = true;
 
     let viewWidth = 0;
     let viewHeight = 0;
@@ -76,6 +77,12 @@ export default function SpaceBattleCanvas() {
     };
 
     canvas.addEventListener("mousemove", move);
+
+    const onEnter = () => (paused = false);
+    const onLeave = () => (paused = true);
+    canvas.addEventListener("mouseenter", onEnter);
+    canvas.addEventListener("mouseleave", onLeave);
+
     window.addEventListener("mousedown", () => {
       resumes.push({
         x: player.x,
@@ -107,7 +114,22 @@ export default function SpaceBattleCanvas() {
 
     // ===== LOOP =====
     const loop = (time) => {
+      if (paused) {
+        // Draw dimmed overlay
+        ctx.fillStyle = "rgba(255,255,255,0.6)";
+        ctx.fillRect(0, 0, viewWidth, viewHeight);
+
+        ctx.fillStyle = "#666";
+        ctx.font = "20px monospace";
+        ctx.textAlign = "center";
+        ctx.fillText("Hover to Resume", viewWidth / 2, viewHeight / 2);
+
+        requestAnimationFrame(loop);
+        return;
+      }
+
       fire(time);
+
 
       // Background
       ctx.fillStyle = "#ffff";
@@ -167,7 +189,10 @@ export default function SpaceBattleCanvas() {
     return () => {
       window.removeEventListener("resize", resize);
       canvas.removeEventListener("mousemove", move);
+      canvas.removeEventListener("mouseenter", onEnter);
+      canvas.removeEventListener("mouseleave", onLeave);
     };
+
   }, []);
 
   return (

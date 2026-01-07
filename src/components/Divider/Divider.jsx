@@ -16,27 +16,27 @@ export default function Divider() {
 
       {/* LEGO STACK */}
       <div className="lego-stack">
-        <button className="lego-btn" onClick={() => scrollTo("about")}>
+        <button className="lego-btn" onClick={() => scrollTo("About")}>
           <img src={`${process.env.PUBLIC_URL}/assets/orange_lego.jpg`} alt="" />
           <span>About</span>
         </button>
 
-        <button className="lego-btn" onClick={() => scrollTo("education")}>
+        <button className="lego-btn" onClick={() => scrollTo("Experience")}>
           <img src={`${process.env.PUBLIC_URL}/assets/blue_lego.jpg`} alt="" />
-          <span>Education</span>
-        </button>
-
-        <button className="lego-btn" onClick={() => scrollTo("experience")}>
-          <img src={`${process.env.PUBLIC_URL}/assets/green_lego.jpg`} alt="" />
           <span>Experience</span>
         </button>
 
-        <button className="lego-btn" onClick={() => scrollTo("skills")}>
-          <img src={`${process.env.PUBLIC_URL}/assets/yellow_lego.jpg`} alt="" />
+        <button className="lego-btn" onClick={() => scrollTo("Skills")}>
+          <img src={`${process.env.PUBLIC_URL}/assets/green_lego.jpg`} alt="" />
           <span>Skills</span>
         </button>
 
-        <button className="lego-btn" onClick={() => scrollTo("contact")}>
+        <button className="lego-btn" onClick={() => scrollTo("Projects")}>
+          <img src={`${process.env.PUBLIC_URL}/assets/yellow_lego.jpg`} alt="" />
+          <span>Projects</span>
+        </button>
+
+        <button className="lego-btn" onClick={() => scrollTo("Contact")}>
           <img src={`${process.env.PUBLIC_URL}/assets/red_lego.jpg`} alt="" />
           <span>Contact</span>
         </button>
